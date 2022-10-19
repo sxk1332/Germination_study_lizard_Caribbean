@@ -1,0 +1,28 @@
+,Species,Treatment,perc_germ,perc_alive,mean_GT,SE,min_GT,max_GT,no_sown,no_germ,no_alive,Species,Treatment,,
+1,Acrocomia crispa,Control,20,93.33333333,81.5,24.5,57,106,15,3,14,Acrocomia crispa,Control,,Uncommon
+4,Acrocomia crispa,Iguana,30,70,148.5416667,9.5,139,158,10,3,7,Acrocomia crispa,Iguana,,
+5,Acrocomia crispa,Tortoise,0,61.9047619,NA,NA,NA,NA,21,0,13,Acrocomia crispa,Tortoise,,
+7,C. spinosa,Control,93.33333333,93.33333333,25.5,0.267261242,25,27,15,14,14,C. spinosa,Control,,Rare
+10,C. spinosa,Iguana,60,60,25.625,0.497762852,25,29,15,9,9,C. spinosa,Iguana,,
+11,C. spinosa,Tortoise,66.66666667,66.66666667,26.5,1.213351648,21,33,15,10,10,C. spinosa,Tortoise,,
+13,Chrysobalanus icaco,Control,86.66666667,86.66666667,101.9083333,8.131843746,85,165,15,13,13,Chrysobalanus icaco,Control,,Common
+16,Chrysobalanus icaco,Iguana,48,48,99.10833333,6.956187848,81,139,25,12,12,Chrysobalanus icaco,Iguana,,
+17,Chrysobalanus icaco,Tortoise,46.66666667,60,58.40833333,7.461014416,41,84,15,7.000000001,9,Chrysobalanus icaco,Tortoise,,
+19,Coccothrinax barbadensis,Control,50,50,100.1666667,6.997221671,67,111,14,7,7,Coccothrinax barbadensis,Control,,Endemic to 
+23,Coccothrinax barbadensis,Iguana,0,0,NA,NA,NA,NA,15,0,0,Coccothrinax barbadensis,Iguana,,
+24,Coccothrinax barbadensis,Tortoise,0,0,NA,NA,NA,NA,6,0,0,Coccothrinax barbadensis,Tortoise,,
+25,Cocoloba uvifera,Control,33.33333333,40,38.4,4.106093034,28,49,15,5,6,Cocoloba uvifera,Control,,Common
+28,Cocoloba uvifera,Iguana,94.11764706,94.11764706,28.62760417,3.455189059,17,70,17,16,16,Cocoloba uvifera,Iguana,,
+29,Cocoloba uvifera,Tortoise,66.66666667,66.66666667,20.7,1.807699582,16,34,15,10,10,Cocoloba uvifera,Tortoise,,
+31,Cordia sebestena,Control,80,80,99.50520833,9.679808254,81,161,10,8,8,Cordia sebestena,Control,,Common
+34,Cordia sebestena,Iguana,100,100,58,10.34408043,27,69,4,4,4,Cordia sebestena,Iguana,,
+37,Goetzae elegans,Control,0,0,NA,NA,NA,NA,15,0,0,Goetzae elegans,Control,,Rare
+41,Goetzae elegans,Iguana,0,0,NA,NA,NA,NA,16,0,0,Goetzae elegans,Iguana,,
+42,Goetzae elegans,Tortoise,0,0,NA,NA,NA,NA,14,0,0,Goetzae elegans,Tortoise,,
+43,Pseudophoenix vinifera,Control,13.33333333,73.33333333,130.0208333,28.02083333,102,158,15,2,11,Pseudophoenix vinifera,Control,,Rare
+46,Pseudophoenix vinifera,Iguana,0,50,NA,NA,NA,NA,8,0,4,Pseudophoenix vinifera,Iguana,,
+49,Syagrus amara,Control,16.66666667,16.66666667,NA,NA,NA,NA,6,1,1,Syagrus amara,Control,,Endemic to Dominica
+50,Syagrus amara,Tortoise,87.5,87.5,447,NA,447,447,8,7,7,Syagrus amara,Tortoise,,
+55,Theophrasta,Control,86.66666667,86.66666667,96.15277778,6.937107235,71,117,15,13,13,Theophrasta,Control,,Rare
+58,Theophrasta,Iguana,0,0,NA,NA,NA,NA,3,0,0,Theophrasta,Iguana,,
+59,Theophrasta,Tortoise,6.666666667,6.666666667,NA,NA,NA,NA,15,1,1,Theophrasta,Tortoise,,
