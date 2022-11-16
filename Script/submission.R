@@ -96,25 +96,25 @@ data.germ.jab.analyse <- read_csv2("dat_germ.csv")
 name <- unique(data.germ.jab.analyse$Species)
 
 ## Need to input manually for each species. 
-temp <- data.germ.jab.analyse[which(data.germ.jab.analyse$Species==name[1]),]    #change name[1] to other integers for other species
+temp <- data.germ.jab.analyse[which(data.germ.jab.analyse$Species==name[3]),]    #change name[1] to other integers for other species
 
 ### Input integers using values from the "no_alive" column in Supp. Table 3. Example below is for Acrocomia crispa, which had 14, 7, and 13 potentially alive seeds at the end of the greenhouse trials for Control, Inguana-ingested, and Tortoise-ingested respectively.
 library(germinationmetrics)
-PV <- PeakValue(germ.counts = temp$Control, intervals = temp$Days, total.seeds = 14)
+PV <- PeakValue(germ.counts = temp$Control, intervals = temp$Days, total.seeds = 13, partial = FALSE)
 PV
-GV <- GermValue(germ.counts = temp$Control, intervals = temp$Days, total.seeds = 14,
+GV <- GermValue(germ.counts = temp$Control, intervals = temp$Days, total.seeds = 13, partial = FALSE,
                 method = "czabator")
 GV$`Germination Value`
 
-PV <- PeakValue(germ.counts = temp$Iguana, intervals = temp$Days, total.seeds = 7)
+PV <- PeakValue(germ.counts = temp$Iguana, intervals = temp$Days, total.seeds = 12, partial = FALSE)
 PV
-GV <- GermValue(germ.counts = temp$Iguana, intervals = temp$Days, total.seeds = 7,
+GV <- GermValue(germ.counts = temp$Iguana, intervals = temp$Days, total.seeds = 12, partial = FALSE,
                 method = "czabator")
 GV$`Germination Value`
 
-PV <- PeakValue(germ.counts = temp$Tortoise, intervals = temp$Days, total.seeds = 13)
+PV <- PeakValue(germ.counts = temp$Tortoise, intervals = temp$Days, total.seeds = 9, partial = FALSE)
 PV
-GV <- GermValue(germ.counts = temp$Tortoise, intervals = temp$Days, total.seeds = 13,
+GV <- GermValue(germ.counts = temp$Tortoise, intervals = temp$Days, total.seeds = 9, partial = FALSE,
                 method = "czabator")
 GV$`Germination Value`
 
@@ -124,7 +124,7 @@ library(lubridate)
 library(ggsurvfit)
 library(gtsummary)
 library(tidycmprsk)
-library(condsurv)
+library(condSURV)
 library(dplyr)
 library(ggplot2)
 
@@ -139,6 +139,12 @@ dat$Sown <- as.POSIXct(strptime(dat$Sown, "%m/%d/%Y"))
 dat$Germinated <- as.POSIXct(strptime(dat$Germinated, "%m/%d/%Y"))
 dat$time <- dat$Germinated - dat$Sown
 dat$time <- as.numeric(dat$time)
+
+dat_temp2 <- dat[is.na(dat$time),]  # NA times only
+dat_temp2$time <- as.POSIXct(strptime("01/12/2022", "%m/%d/%Y")) - dat_temp2$Sown
+dat_temp3 <- dat[!is.na(dat$time),] # non-times for merging purposes
+
+dat <- rbind(dat_temp2, dat_temp3)
 
 ## Total
 survfit2(Surv(time, status) ~ 1, data = dat) %>% 
@@ -166,7 +172,7 @@ survfit2(Surv(time, status) ~ Treatment, data = dat_ac) %>%
   ) + xlim(0,200)+
   add_confidence_interval()
 
-survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_ac) #p = 0.09
+survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_ac) #p = 0.08
 coxph(Surv(time, status) ~ Treatment + (1|ID), data = dat_ac) %>%  
   tbl_regression(exp = TRUE)   
 
@@ -181,7 +187,7 @@ survfit2(Surv(time, status) ~ Treatment, data = dat_cs) %>%
   ) + xlim(0,40)+
   add_confidence_interval()
 
-survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_cs) #p =0.2
+survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_cs) #p =0.1
 coxph(Surv(time, status) ~ Treatment + (1|ID), data = dat_cs) %>%  
   tbl_regression(exp = TRUE)  
 
@@ -196,7 +202,7 @@ survfit2(Surv(time, status) ~ Treatment, data = dat_ci) %>%
   ) + xlim(0,200)+
   add_confidence_interval()
 
-survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_ci) #p < 0.001
+survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_ci) #p = 0.9
 coxph(Surv(time, status) ~ Treatment + (1|ID), data = dat_ci) %>%  
   tbl_regression(exp = TRUE)  
 
@@ -211,7 +217,7 @@ survfit2(Surv(time, status) ~ Treatment, data = dat_cu) %>%
   ) + xlim(0,75)+
   add_confidence_interval()
 
-survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_cu) #p =0.008
+survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_cu) #p =0.002
 coxph(Surv(time, status) ~ Treatment + (1|ID), data = dat_cu) %>%  
   tbl_regression(exp = TRUE) 
 
@@ -222,7 +228,7 @@ survfit2(Surv(time, status) ~ Treatment, data = dat_cos) %>%
   labs(
     x = "Days",
     y = "Overall survival probability"
-  ) + xlim(0,75)+
+  ) + xlim(0,170)+
   add_confidence_interval()
 
 survdiff(Surv(time, status) ~ Treatment + (1 | ID), data = dat_cos) #p < 0.001
